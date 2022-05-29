@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import './App.css';
-import { generateCurrentId } from './GameMaker';
 
 const Options = ({saveBoardId}) => {
 
