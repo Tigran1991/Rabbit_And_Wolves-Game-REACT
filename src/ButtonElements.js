@@ -2,15 +2,18 @@ import React from 'react';
 
 import './App.css';
 
-const ButtonElements = ({saveBoardId}) => {
+const ButtonElements = ({updateMatrix}) => {
 
     return (
-        <div className='buttons-div'>
-            <button className='move-right' ></button>
-            <button className='move-bottom'></button>
-            <button className='move-left'></button>
-            <button className='move-top'></button>
-        </div>
+        <>
+            <div className='buttons-div'>
+                <button className='move-right' onClick={() => updateMatrix('move-right')}></button>
+                <button className='move-bottom' onClick={() => updateMatrix('move-bottom')}></button>
+                <button className='move-left' onClick={() => updateMatrix('move-left')}></button>
+                <button className='move-top' onClick={() => updateMatrix('move-top')}></button>
+            </div>
+        </>
+        
     )
 }
 

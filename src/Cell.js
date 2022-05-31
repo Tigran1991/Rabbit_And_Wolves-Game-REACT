@@ -1,6 +1,6 @@
 import React from "react";
 
-import './Board.css';
+import './App.css';
 
 const Cell = () => {
     return (
