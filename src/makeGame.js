@@ -72,15 +72,12 @@ export const makeGame = () => {
     return matrix;
   }
 
-  // const compose = (...fns) => (x) => fns.reduceRight((res, fn) => fn(res), x);
-  // const createCurrentMatrix = compose(setCharacterOnPlayfield, createInitialMatrix);
   const currentMatrix = (boardSize) => {
     const INITIAL_MATRIX = createInitialMatrix(boardSize);
     const MATRIX = setCharacterOnPlayfield(INITIAL_MATRIX, boardSize);
     return MATRIX
   }
 
-  // const makeCharactersMovement = compose(updateWolvesPositions, getCharactersPositions);
   const moveCharacters = (moveDirection, matrix) => {
 
     const add = (summableA, sumableB) => summableA + sumableB;
