@@ -3,20 +3,17 @@ import React, { useState } from "react";
 import './App.css';
 import Options from "./Options";
 import GameBoard from "./GameBoard";
-import { generateCurrentId } from './makeGame';
 import { makeGame } from './makeGame';
 
 const App = () => {
 
   const[makeGameField, setMakeGameField] = useState(false);
 
-  const currentGameId = generateCurrentId();
-
   const makeGameHandler = () => {
     setMakeGameField(true);
   }
 
-  const[currentSize, setCurrentSize] = useState();
+  const[currentSize, setCurrentSize] = useState(7);
   const[currentId, setCurrentId] = useState([]);
   const[matrix, setMatrix] = useState();
 
@@ -31,11 +28,11 @@ const App = () => {
             setCurrentSize(size)
             const game = makeGame()
             setMatrix(game.currentMatrix(size))
-          }} />
+          }} key={'options'} />
         }
         <div className="boardField">
           {currentId.map(id => {
-            return <GameBoard key={id} matrix={matrix} size={currentSize} />
+            return <GameBoard key={id} matrix={matrix} size={currentSize} keyName={id} />
           })} 
         </div>
         

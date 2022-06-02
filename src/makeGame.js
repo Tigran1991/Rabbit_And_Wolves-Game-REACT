@@ -17,31 +17,28 @@ const MOVE_DIRECTION = {
 
 const DIRECTION_MOVEMENT = Object.values(MOVE_DIRECTION);
 
+export const CHARACTERS = {
+  [RABBIT]: {
+    name: 'RABBIT',
+    characterCount : 1,
+    canMove: [FREE_CELL, WOLF, HOUSE],
+    id: 'rabbit'
+  },
+  [WOLF]: {
+    name: 'WOLF',
+    canMove: [FREE_CELL, RABBIT],
+    id: 'wolf'
+  },
+  [HOUSE]: {
+    characterCount : 1,
+    id: 'house'
+  },
+  [FENCE]: {
+    id: 'fence'
+  },
+};
 
 export const makeGame = () => {
-
-  const CHARACTERS = {
-    [RABBIT]: {
-      name: 'RABBIT',
-      characterCount : 1,
-      canMove: [FREE_CELL, WOLF, HOUSE],
-      id: 'rabbit'
-    },
-    [WOLF]: {
-      name: 'WOLF',
-      characterCount: (7 * 40) /100,
-      canMove: [FREE_CELL, RABBIT],
-      id: 'wolf'
-    },
-    [HOUSE]: {
-      characterCount : 1,
-      id: 'house'
-    },
-    [FENCE]: {
-      characterCount: (7 * 40) /100,
-      id: 'fence'
-    },
-  };
 
   const CHARACTERS_KEYS = Object.keys(CHARACTERS);
 
@@ -58,11 +55,13 @@ export const makeGame = () => {
     if (initialMatrix[x][y] === 0) {
       return [x, y];
     } else {
-      return getRandomPositionsForCharacter(initialMatrix);
+      return getRandomPositionsForCharacter(initialMatrix, initialSize);
     }
   }
   
   const setCharacterOnPlayfield = (matrix, size) => {
+    CHARACTERS[WOLF].characterCount = (size * 40) / 100;
+    CHARACTERS[FENCE].characterCount = (size * 40) / 100;
     CHARACTERS_KEYS.forEach(character => {
       for(let i = 0; i < CHARACTERS[character].characterCount; i++){
         const[m, n] = getRandomPositionsForCharacter(matrix, size);
@@ -78,7 +77,7 @@ export const makeGame = () => {
     return MATRIX
   }
 
-  const moveCharacters = (moveDirection, matrix) => {
+  const moveCharacters = (moveDirection, matrix, size) => {
 
     const add = (summableA, sumableB) => summableA + sumableB;
       
@@ -128,15 +127,15 @@ export const makeGame = () => {
       }
     }
 
-    const getNewPosition = (step) => {
-      const NEW_X = add(7, step[X]) % 7;
-      const NEW_Y = add(7, step[Y]) % 7;
+    const getNewPosition = (step, size) => {
+      const NEW_X = add(size, step[X]) % size;
+      const NEW_Y = add(size, step[Y]) % size;
       return Array.of(NEW_X, NEW_Y);
     };
 
     const calculateRabbitNewPosition = (position, direction) => {
       const STEP = determineAdjacentPosition(position, MOVE_DIRECTION[direction]);
-      const NEW_POSITION = getNewPosition(STEP);
+      const NEW_POSITION = getNewPosition(STEP, size);
       return NEW_POSITION;
     }
 
@@ -167,12 +166,12 @@ export const makeGame = () => {
       } 
     }
 
-    const getPlayfieldRange = () => {
-      return [...Array(7).keys()];
+    const getPlayfieldRange = (size) => {
+      return [...Array(size).keys()];
     }
 
     const isInRange = (position) => {
-      const RANGE = getPlayfieldRange();
+      const RANGE = getPlayfieldRange(size);
       if(RANGE.includes(position[X]) && RANGE.includes(position[Y])){
         return true;
       }

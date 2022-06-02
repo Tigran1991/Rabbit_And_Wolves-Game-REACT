@@ -2,40 +2,23 @@ import React from 'react';
 
 import './App.css';
 import Cell from './Cell';
+import CharacterCell from './CharacterCell';
 
-const Playfield = ({ matrix }) => {
+const Playfield = (props) => {
 
-    const RABBIT = 1;
-    const WOLF = 2;
-    const HOUSE = 3;
-    const FENCE = 4;
-
-    const CHARACTERS = {
-        [RABBIT]: {
-          id: 'rabbit'
-        },
-        [WOLF]: {
-          id: 'wolf'
-        },
-        [HOUSE]: {
-          id: 'house'
-        },
-        [FENCE]: {
-          id: 'fence'
-        },
-      };
-
-    if(matrix === undefined){
+    if(props.matrix === undefined){
       return null
     }
 
     return (
       <div className='playfield'>
 
-        {matrix.map(row => 
-            row.map(rowItem =>
-                rowItem !== 0 ? <div className={CHARACTERS[rowItem].id}></div> : <Cell />
-            )    
+        {props.matrix.map((row, X) => 
+          row.map((rowItem, Y) =>
+            rowItem !== 0 ?
+            <CharacterCell item={rowItem} key={X + "" + Y}/> :
+            <Cell key={X + "" + Y} />
+          )    
         )}
       </div>
     )

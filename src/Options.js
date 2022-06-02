@@ -6,11 +6,12 @@ import { generateCurrentId } from "./makeGame";
 const Options = ({saveBoardId}) => {
 
     const[size, setSize] = useState(7);
-    const[id, setId] = useState(generateCurrentId());
+    const[id, setId] = useState();
 
     const gameParametersHandler = (event) => {
+        const boardId = generateCurrentId();
         setSize(parseInt(event.target.value));
-        setId(generateCurrentId());
+        setId(boardId);
     }
 
     return (
@@ -21,8 +22,8 @@ const Options = ({saveBoardId}) => {
                     <option value='8'>8 X 8</option>
                     <option value='9'>9 X 9</option>
                 </select>                
-                <button className="newBoardBtn" onClick={() => saveBoardId(size, id)}>New Board</button>
-                <button className="reloadBtn">Reload</button>
+                <button className="newBoardBtn" onClick={() => saveBoardId(size, generateCurrentId())}>New Board</button>
+                <button className="reloadBtn" onClick={() => window.location.reload()}>Reload</button>
             </div>
         </>        
     )
