@@ -36,7 +36,6 @@ const App = () => {
               return <GameBoard key={id} matrix={matrix} size={currentSize} keyName={id} />
             })} 
           </div>
-        
         </div>
     </div>
   )
