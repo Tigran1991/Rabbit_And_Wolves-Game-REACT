@@ -22,19 +22,20 @@ const App = () => {
         {!makeGameField && <button className="newGameBtn" onClick={makeGameHandler}>New Game</button>}
 
         <div className="container">
-        {makeGameField &&
-          <Options saveBoardId={(size, id) => {
-            setCurrentId(currentId.concat(id))
-            setCurrentSize(size)
-            const game = makeGame()
-            setMatrix(game.currentMatrix(size))
-          }} key={'options'} />
-        }
-        <div className="boardField">
-          {currentId.map(id => {
-            return <GameBoard key={id} matrix={matrix} size={currentSize} keyName={id} />
-          })} 
-        </div>
+          {makeGameField &&
+            <Options saveBoardId={(size, id) => {
+              setCurrentId(currentId.concat(id))
+              setCurrentSize(size)
+              const game = makeGame()
+              setMatrix(game.currentMatrix(size))
+            }} key={'options'} />
+          }
+
+          <div className="boardField">
+            {currentId.map(id => {
+              return <GameBoard key={id} matrix={matrix} size={currentSize} keyName={id} />
+            })} 
+          </div>
         
         </div>
     </div>

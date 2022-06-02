@@ -6,10 +6,6 @@ import CharacterCell from './CharacterCell';
 
 const Playfield = (props) => {
 
-    if(props.matrix === undefined){
-      return null
-    }
-
     return (
       <div className='playfield'>
 

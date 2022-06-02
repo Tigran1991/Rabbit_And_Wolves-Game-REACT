@@ -11,11 +11,13 @@ const GameBoard = (props) => {
     const[size, setSize] = useState(props.size);
     const[winner, setWinner] = useState();
 
-    const cellSize = 60;
+    const CELL_SIZE = 60;
+    const WIDTH_INDEX = 44;
+    const HEIGHT_INDEX = 83;
 
     const boardStyle = {
-        width: cellSize * size + 44,
-        height: cellSize * size + 83
+        width: CELL_SIZE * size + WIDTH_INDEX,
+        height: CELL_SIZE * size + HEIGHT_INDEX
     }
 
     return (

@@ -252,13 +252,13 @@ export const makeGame = () => {
       }
     }
 
-    const positions = getCharactersPositions(moveDirection);
+    const POSITIONS = getCharactersPositions(moveDirection);
 
-    updateWolvesPositions(positions)
+    updateWolvesPositions(POSITIONS)
 
-    const winnerCharacter = decideGameCourse();
+    const WINNER_CHARACTER = decideGameCourse();
 
-    return [matrix, winnerCharacter]
+    return [matrix, WINNER_CHARACTER]
   }
 
   return {
