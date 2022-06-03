@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import './App.css';
 import Playfield from './Playfield';
 import ButtonElements from './ButtonElements';
-import { makeGame } from './makeGame';
+import { moveCharacters } from './RabbitWolfGameClass';
 
 const GameBoard = (props) => {
 
@@ -33,10 +33,9 @@ const GameBoard = (props) => {
 
 
             <ButtonElements updateMatrix={(sideMove) => {
-                const game = makeGame()
-                const [updatedMatrix, winnerCharacter] = game.moveCharacters(sideMove, matrix, size)
-                setMatrix([...updatedMatrix])
-                setWinner(winnerCharacter)
+                const [updatedMatrix, winnerCharacter] = moveCharacters(sideMove, matrix, size);
+                setMatrix([...updatedMatrix]);
+                setWinner(winnerCharacter);
             }} key={'buttonsDiv' + props.keyName} />
         </div>           
     )

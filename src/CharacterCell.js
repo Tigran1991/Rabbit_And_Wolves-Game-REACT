@@ -1,7 +1,7 @@
 import React from "react";
 
 import './App.css';
-import { CHARACTERS } from "./makeGame";
+import { CHARACTERS } from "./RabbitWolfGameClass";
 
 const CharacterCell = (props) => {
 
