@@ -8,31 +8,26 @@ import { createCurrentMatrix } from './RabbitWolfGameClass';
 const App = () => {
 
   const[makeGameField, setMakeGameField] = useState(false);
-
-  const makeGameHandler = () => {
-    setMakeGameField(true);
-  }
-
-  const[currentSize, setCurrentSize] = useState(7);
   const[currentId, setCurrentId] = useState([]);
-  const[matrix, setMatrix] = useState();
+  const[currentSize, setCurrentSize] = useState(7);
+  const[currentMatrix, setCurrentMatrix] = useState();
 
   return (
     <div className="App">
-        {!makeGameField && <button className="newGameBtn" onClick={makeGameHandler}>New Game</button>}
+        {!makeGameField && <button className="newGameBtn" onClick={() => setMakeGameField(true)}>New Game</button>}
 
         <div className="container">
           {makeGameField &&
             <Options createNewGame={(size, id) => {
               setCurrentId(currentId.concat(id));
               setCurrentSize(size);
-              setMatrix(createCurrentMatrix(size));
+              setCurrentMatrix(createCurrentMatrix(size));
             }} />
           }
 
           <div className="boardField">
             {currentId.map(id => {
-              return <GameBoard key={id} matrix={matrix} size={currentSize} keyName={id} />
+              return <GameBoard keyName={id} size={currentSize} matrix={currentMatrix} key={id}/>
             })} 
           </div>
         </div>

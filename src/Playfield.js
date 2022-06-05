@@ -1,8 +1,8 @@
 import React from 'react';
 
 import './App.css';
-import Cell from './Cell';
 import CharacterCell from './CharacterCell';
+import { FREE_CELL } from './RabbitWolfGameClass';
 
 const Playfield = (props) => {
 
@@ -13,7 +13,7 @@ const Playfield = (props) => {
           row.map((rowItem, Y) =>
             rowItem !== 0 ?
             <CharacterCell item={rowItem} key={X + "" + Y}/> :
-            <Cell key={X + "" + Y} />
+            <CharacterCell item={FREE_CELL} key={X + "" + Y}/>
           )    
         )}
       </div>

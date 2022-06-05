@@ -8,7 +8,7 @@ import { moveCharacters } from './RabbitWolfGameClass';
 const GameBoard = (props) => {
 
     const[matrix, setMatrix] = useState(props.matrix);
-    const[size, setSize] = useState(props.size);
+    const[size, setSize] = useState(props.size); 
     const[winner, setWinner] = useState();
 
     const CELL_SIZE = 60;
