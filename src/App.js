@@ -4,13 +4,17 @@ import './App.css';
 import Options from "./Options";
 import GameBoard from "./GameBoard";
 import { createCurrentMatrix } from './RabbitWolfGameClass';
+import { useDispatch, useSelector } from "react-redux";
+import { selectedBoard } from './redux/features/boardReducerSlice';
+import { selectBoards } from './redux/features/boardsReducerSlice';
 
 const App = () => {
 
   const[makeGameField, setMakeGameField] = useState(false);
-  const[currentId, setCurrentId] = useState([]);
-  const[currentSize, setCurrentSize] = useState(7);
-  const[currentMatrix, setCurrentMatrix] = useState();
+
+  const boards = useSelector(selectBoards);
+
+  const dispatch = useDispatch();
 
   return (
     <div className="App">
@@ -18,16 +22,18 @@ const App = () => {
 
         <div className="container">
           {makeGameField &&
-            <Options createNewGame={(size, id) => {
-              setCurrentId(currentId.concat(id));
-              setCurrentSize(size);
-              setCurrentMatrix(createCurrentMatrix(size));
+            <Options createNewGame={(currentId, currentSize) => {
+              dispatch(selectedBoard({
+                id: currentId,
+                size: currentSize,
+                matrix: createCurrentMatrix(currentSize)
+              }));
             }} />
           }
 
           <div className="boardField">
-            {currentId.map(id => {
-              return <GameBoard keyName={id} size={currentSize} matrix={currentMatrix} key={id}/>
+            {boards.map(id => {
+              return <GameBoard keyName={id} matrix={id.matrix} key={id.id}/>
             })} 
           </div>
         </div>

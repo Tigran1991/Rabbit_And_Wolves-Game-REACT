@@ -4,20 +4,19 @@ import './App.css';
 import Playfield from './Playfield';
 import ButtonElements from './ButtonElements';
 import { moveCharacters } from './RabbitWolfGameClass';
+import { useSelector } from 'react-redux';
+import { selectSize } from './redux/features/sizeReducerSlice';
+import { selectMatrix } from './redux/features/matrixReducerSlice';
 
 const GameBoard = (props) => {
-
-    const[matrix, setMatrix] = useState(props.matrix);
-    const[size, setSize] = useState(props.size); 
-    const[winner, setWinner] = useState();
 
     const CELL_SIZE = 60;
     const WIDTH_INDEX = 44;
     const HEIGHT_INDEX = 83;
 
     const boardStyle = {
-        width: CELL_SIZE * size + WIDTH_INDEX,
-        height: CELL_SIZE * size + HEIGHT_INDEX
+        width: CELL_SIZE * props.matrix.length + WIDTH_INDEX,
+        height: CELL_SIZE * props.matrix.length + HEIGHT_INDEX
     }
 
     return (
@@ -25,18 +24,13 @@ const GameBoard = (props) => {
 
             <div className="board" style={boardStyle}>
                 {
-                    winner !== undefined ?
-                    <h1 className='winner'> {winner} WIN ! </h1> :
-                    <Playfield matrix={matrix} key={'playfield' + props.keyName} />
+                    // winner !== undefined ?
+                    // <h1 className='winner'> {winner} WIN ! </h1> :
+                    <Playfield matrix={props.matrix} key={'playfield' + props.keyName} />
                 }
             </div>
 
-
-            <ButtonElements updateMatrix={(sideMove) => {
-                const [updatedMatrix, winnerCharacter] = moveCharacters(sideMove, matrix, size);
-                setMatrix([...updatedMatrix]);
-                setWinner(winnerCharacter);
-            }} key={'buttonsDiv' + props.keyName} />
+            <ButtonElements key={'buttonsDiv' + props.keyName} />
         </div>           
     )
 }
