@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import './App.css';
 import Playfield from './Playfield';
 import ButtonElements from './ButtonElements';
-import { moveCharacters } from './RabbitWolfGameClass';
-import { useSelector } from 'react-redux';
-import { selectSize } from './redux/features/sizeReducerSlice';
-import { selectMatrix } from './redux/features/matrixReducerSlice';
 
 const GameBoard = (props) => {
 
