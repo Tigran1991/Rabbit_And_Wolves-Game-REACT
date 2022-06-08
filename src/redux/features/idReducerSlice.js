@@ -1,3 +1,5 @@
+import { generateId } from "../../RabbitWolfGameClass";
+
 export function currentIdReducer(state={}, action) { // reducer
   if(action.type === 'select-id') {
       return {
@@ -10,7 +12,7 @@ export function currentIdReducer(state={}, action) { // reducer
   };
   
   export const initialId = { // initialState
-    id: []
+    id: generateId()
   };
   
   export function selectId(state) { // useSelector
@@ -21,7 +23,7 @@ export function currentIdReducer(state={}, action) { // reducer
     return {
       type: 'select-id',
       payload: {
-        id: [].concat(newId)
+        id: newId
       }
     }
   };

@@ -16,6 +16,7 @@ const Playfield = (props) => {
             <CharacterCell item={FREE_CELL} key={X + "" + Y}/>
           )    
         )}
+        
       </div>
     )
 }
