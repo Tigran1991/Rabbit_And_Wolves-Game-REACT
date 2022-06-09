@@ -252,6 +252,7 @@ export const moveCharacters = (moveDirection, matrix, size) => {
 
   const decideGameCourse = () => {
     if (determineWinnerCharacter()) {
+      
       return displayWinnerCharacter();
     }
   };

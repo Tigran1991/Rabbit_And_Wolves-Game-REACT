@@ -1,19 +1,16 @@
 import { combineReducers, createStore } from 'redux';
 import { gameFieldReducer, initialGameField } from '../features/gameReducerSlice';
-import { currentIdReducer, initialId } from '../features/idReducerSlice'
-import { currentSizeReducer, initialSize } from '../features/sizeReducerSlice';
+import { sizeReducer, initialSize } from '../features/sizeReducerSlice';
 import { boardsReducer } from '../features/boardsReducerSlice';
-import { updateBoardReducer } from '../features/updateReducerSlice';
+import { boardReducer } from '../features/boardReducerSlice';
 
 const store = createStore(combineReducers({
   gameField: gameFieldReducer,
-  currentId: currentIdReducer,
-  currentSize: currentSizeReducer,
+  currentSize: sizeReducer,
+  board: boardReducer,
   boards: boardsReducer,
-  updateBoard: updateBoardReducer
 }), {
   gameField: initialGameField,
-  currentId: initialId,
   currentSize: initialSize,
 });
 

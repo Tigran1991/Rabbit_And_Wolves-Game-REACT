@@ -1,8 +1,7 @@
-export function updateBoardReducer(state={}, action) { //reducer
+export function updateBoardReducer(state = {}, action) {
   if (action.type === "make-movement") {
     return {
       ...state,
-      matrix: action.payload.matrix,
       winner: action.payload.winner,
     };
   }
@@ -10,18 +9,15 @@ export function updateBoardReducer(state={}, action) { //reducer
   return state;
 }
 
-export function updateBoard(state) {
-  return state.updateBoard;
+export function updatedBoard(state) {
+  return state.updatedBoard;
 }
 
-export function updatedBoard(updatedMatrix) {
+export function updateBoard(updatedValues) {
   return {
     type: "make-movement",
     payload: {
-      matrix: updatedMatrix.matrix,
-      winner: updatedMatrix.winner,
+      winner: updatedValues.winner,
     },
   };
 }
-
-

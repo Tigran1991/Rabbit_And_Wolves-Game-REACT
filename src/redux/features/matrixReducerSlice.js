@@ -1,6 +1,6 @@
 import { createCurrentMatrix } from "../../RabbitWolfGameClass";
 
-export function currentMatrixReducer(state={}, action) {
+export function matrixReducer(state={}, action) {
   if (action.type === "select-matrix") {
     return {
       ...state,

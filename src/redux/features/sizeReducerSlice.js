@@ -1,4 +1,4 @@
-export function currentSizeReducer(state={}, action) {
+export function sizeReducer(state={}, action) {
   if(action.type === 'select-size') {
     return {
       ...state,
@@ -13,11 +13,11 @@ export const initialSize = {
   size: 7
 };
 
-export function selectSize(state) {
+export function selectedSize(state) {
   return state.currentSize.size;
 };
 
-export function selectedSize(newSize) {
+export function selectSize(newSize) {
   return {
     type: 'select-size',
     payload: {
