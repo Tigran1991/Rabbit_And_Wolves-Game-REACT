@@ -15,14 +15,14 @@ const GameBoard = (props) => {
     const WIDTH_INDEX = 44;
     const HEIGHT_INDEX = 83;
 
-    const id = props.boardData.id;
-    const size = props.boardData.size;
-    const matrix = props.boardData.matrix;
-    const winner = props.boardData.winner;
+    const ID = props.boardData.id;
+    const SIZE = props.boardData.size;
+    const MATRIX = props.boardData.matrix;
+    const WINNER = props.boardData.winner;
 
     const boardStyle = {
-        width: CELL_SIZE * size + WIDTH_INDEX,
-        height: CELL_SIZE * size + HEIGHT_INDEX
+        width: CELL_SIZE * SIZE + WIDTH_INDEX,
+        height: CELL_SIZE * SIZE + HEIGHT_INDEX
     }
 
     return (
@@ -30,22 +30,22 @@ const GameBoard = (props) => {
 
             <div className="board" style={boardStyle}>
                 {
-                    winner !== undefined ?
-                    <h1 className='winner'> {winner} WIN ! </h1> :
-                    <Playfield matrix={matrix} key={'playfield' + id} />
+                    WINNER !== undefined ?
+                    <h1 className='winner'> {WINNER} WIN ! </h1> :
+                    <Playfield matrix={MATRIX} key={'playfield' + ID} />
                 }
             </div>
 
             {
-                winner === undefined &&
+                WINNER === undefined &&
                 <ButtonElements updateMatrix={(sideMove) => {
-                    const [updatedMatrix, winnerCharacter] = moveCharacters(sideMove, matrix, size);
+                    const [updatedMatrix, winnerCharacter] = moveCharacters(sideMove, MATRIX, SIZE);
                     dispatch(updateBoard({
-                        id: id,
+                        id: ID,
                         matrix: [...updatedMatrix],
                         winner: winnerCharacter, 
                     }))
-                }} key={'buttonsDiv' + id} />
+                }} key={'buttonsDiv' + ID} />
             }
         </div>           
     )
