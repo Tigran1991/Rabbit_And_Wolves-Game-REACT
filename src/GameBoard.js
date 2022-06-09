@@ -38,14 +38,14 @@ const GameBoard = (props) => {
 
             {
                 winner === undefined &&
-                    <ButtonElements updateMatrix={(sideMove) => {
-                        const [updatedMatrix, winnerCharacter] = moveCharacters(sideMove, matrix, size);
-                        dispatch(updateBoard({
-                            id: id,
-                            matrix: [...updatedMatrix],
-                            winner: winnerCharacter, 
-                        }))
-                    }} key={'buttonsDiv' + id} />
+                <ButtonElements updateMatrix={(sideMove) => {
+                    const [updatedMatrix, winnerCharacter] = moveCharacters(sideMove, matrix, size);
+                    dispatch(updateBoard({
+                        id: id,
+                        matrix: [...updatedMatrix],
+                        winner: winnerCharacter, 
+                    }))
+                }} key={'buttonsDiv' + id} />
             }
         </div>           
     )
