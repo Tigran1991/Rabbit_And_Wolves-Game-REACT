@@ -7,7 +7,7 @@ import { generateId } from "./RabbitWolfGameClass";
 
 const Options = ({ createNewGame }) => {
 
-    const currentSize = useSelector(selectedSize);
+    const CURRENT_SIZE = useSelector(selectedSize);
 
     const dispatch = useDispatch();
 
@@ -21,7 +21,7 @@ const Options = ({ createNewGame }) => {
                     <option value='8'>8 X 8</option>
                     <option value='9'>9 X 9</option>
                 </select>                
-                <button className="newBoardBtn" onClick={() => createNewGame(generateId(), currentSize)}>New Board</button>
+                <button className="newBoardBtn" onClick={() => createNewGame(generateId(), CURRENT_SIZE)}>New Board</button>
                 <button className="reloadBtn" onClick={() => window.location.reload()}>Reload</button>
             </div>
         </>        
