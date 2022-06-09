@@ -1,4 +1,4 @@
-export function updateBoardReducer(state = {}, action) {
+export const updateBoardReducer = (state = {}, action) => {
   if (action.type === "make-movement") {
     return {
       ...state,
@@ -9,11 +9,11 @@ export function updateBoardReducer(state = {}, action) {
   return state;
 }
 
-export function updatedBoard(state) {
+export const updatedBoard = (state) => {
   return state.updatedBoard;
 }
 
-export function updateBoard(updatedValues) {
+export const updateBoard = (updatedValues) => {
   return {
     type: "make-movement",
     payload: {

@@ -4,8 +4,6 @@ import './App.css';
 
 const ButtonElements = ({updateMatrix}) => {
 
-    
-
     return (
         <>
             <div className='buttons-div'>

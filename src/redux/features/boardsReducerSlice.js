@@ -1,6 +1,6 @@
 import { boardReducer } from "./boardReducerSlice";
 
-export function boardsReducer(state = [], action) {
+export const boardsReducer = (state = [], action) => {
   if (action.type === "add-board") {
     return [...state, boardReducer(undefined, action)];
   }
@@ -17,11 +17,11 @@ export function boardsReducer(state = [], action) {
   return state;
 }
 
-export function selectedBoards(state) {
+export const selectedBoards = (state) => {
   return state.boards;
 }
 
-export function updateBoard(updatedValues) {
+export const updateBoard = (updatedValues) => {
   return {
     type: "make-movement",
     payload: {

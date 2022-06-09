@@ -1,4 +1,4 @@
-export function boardReducer(state={}, action) {
+export const boardReducer = (state={}, action) => {
   if (action.type === "add-board") {
     return {
       ...state,
@@ -11,11 +11,11 @@ export function boardReducer(state={}, action) {
   return state;
 }
 
-export function selectBoard(state) {
+export const selectBoard = (state) => {
   return state.board;
 }
 
-export function selectedBoard(newBoard) {
+export const selectedBoard = (newBoard) => {
   return {
     type: "add-board",
     payload: {
