@@ -13,16 +13,16 @@ const App = () => {
 
   const dispatch = useDispatch();
 
-  const makeGame = useSelector(makeGameField);
-  const boards = useSelector(selectedBoards);
+  const MAKE_GAME = useSelector(makeGameField);
+  const BOARDS = useSelector(selectedBoards);
 
   return (
     <div className="App">
-        {!makeGame.makeGameField && <button className="newGameBtn" onClick={() => dispatch(gameFieldStatus(true))}>New Game</button>}
+        {!MAKE_GAME.makeGameField && <button className="newGameBtn" onClick={() => dispatch(gameFieldStatus(true))}>New Game</button>}
 
         <div className="container">
 
-          {makeGame.makeGameField &&
+          {MAKE_GAME.makeGameField &&
             <Options createNewGame={(currentId, currentSize) => {
               dispatch(selectedBoard({
                 id: currentId,
@@ -33,7 +33,7 @@ const App = () => {
           }
 
           <div className="boardField">
-            {boards.map(board => {
+            {BOARDS.map(board => {
               return <GameBoard boardData={board} key={board.id} />
             })} 
           </div>
