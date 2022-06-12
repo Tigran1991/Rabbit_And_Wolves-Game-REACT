@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
 import './App.css';
@@ -20,9 +20,18 @@ const GameBoard = (props) => {
     const MATRIX = props.boardData.matrix;
     const WINNER = props.boardData.winner;
 
+    const UPDATE_BOARD = useCallback((sideMove) => {
+        const [updatedMatrix, winnerCharacter] = moveCharacters(sideMove, MATRIX, SIZE);
+        dispatch(updateBoard({
+            id: ID,
+            matrix: [...updatedMatrix],
+            winner: winnerCharacter, 
+        }))
+    }, [ID, MATRIX, SIZE, dispatch]);
+
     const boardStyle = {
         width: CELL_SIZE * SIZE + WIDTH_INDEX,
-        height: CELL_SIZE * SIZE + HEIGHT_INDEX
+        height: CELL_SIZE * SIZE + HEIGHT_INDEX,
     }
 
     return (
@@ -38,14 +47,7 @@ const GameBoard = (props) => {
 
             {
                 WINNER === undefined &&
-                <ButtonElements updateMatrix={(sideMove) => {
-                    const [updatedMatrix, winnerCharacter] = moveCharacters(sideMove, MATRIX, SIZE);
-                    dispatch(updateBoard({
-                        id: ID,
-                        matrix: [...updatedMatrix],
-                        winner: winnerCharacter, 
-                    }))
-                }} key={'buttonsDiv' + ID} />
+                <ButtonElements updateMatrix={UPDATE_BOARD} key={'buttonsDiv' + ID} />
             }
         </div>           
     )

@@ -1,8 +1,9 @@
 import React from 'react';
+import { memo } from 'react';
 
 import './App.css';
 
-const ButtonElements = ({ updateMatrix }) => {
+const ButtonElements = memo(({ updateMatrix }) => {
 
     return (
         <>
@@ -15,6 +16,6 @@ const ButtonElements = ({ updateMatrix }) => {
         </>
         
     )
-}
+})
 
 export default ButtonElements;

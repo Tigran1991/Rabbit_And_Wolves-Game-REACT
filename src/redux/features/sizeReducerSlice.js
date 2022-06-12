@@ -10,7 +10,7 @@ export function sizeReducer(state={}, action) {
 };
 
 export const initialSize = {
-  size: 7
+  size: 7,
 };
 
 export function selectedSize(state) {
