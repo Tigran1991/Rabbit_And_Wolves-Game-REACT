@@ -11,10 +11,6 @@ export const boardReducer = (state={}, action) => {
   return state;
 }
 
-export const selectBoard = (state) => {
-  return state.board;
-}
-
 export const selectedBoard = (newBoard) => {
   return {
     type: "add-board",

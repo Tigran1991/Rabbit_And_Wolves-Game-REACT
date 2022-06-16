@@ -94,6 +94,7 @@ export const createCurrentMatrix = (boardSize) => {
 };
 
 export const moveCharacters = (moveDirection, matrix, size) => {
+  
   const determineNearestPosition = ({ DISTANCES, POSITIONS }) =>
     POSITIONS[DISTANCES.indexOf(Math.min(...DISTANCES))];
 
@@ -252,7 +253,6 @@ export const moveCharacters = (moveDirection, matrix, size) => {
 
   const decideGameCourse = () => {
     if (determineWinnerCharacter()) {
-      
       return displayWinnerCharacter();
     }
   };

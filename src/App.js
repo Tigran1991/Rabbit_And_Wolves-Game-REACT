@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import './App.css';
 import Options from "./Options";
 import GameBoard from "./GameBoard";
-import { createCurrentMatrix } from './RabbitWolfGameClass';
+import { createCurrentMatrix, generateId } from './RabbitWolfGameClass';
 import { gameFieldStatus, makeGameField } from "./redux/features/gameReducerSlice";
+import { selectedSize } from "./redux/features/sizeReducerSlice";
 import { selectedBoard } from './redux/features/boardReducerSlice';
 import { selectedBoards } from './redux/features/boardsReducerSlice';
 
@@ -14,22 +15,28 @@ const App = () => {
   const dispatch = useDispatch();
 
   const MAKE_GAME = useSelector(makeGameField);
+  const CURRENT_SIZE = useSelector(selectedSize);
   const BOARDS = useSelector(selectedBoards);
+
+  const MAKE_NEW_BOARD = useCallback(() => {
+    dispatch(selectedBoard({
+      id: generateId(),
+      size: CURRENT_SIZE,
+      matrix: createCurrentMatrix(CURRENT_SIZE),
+    }))
+  }, [CURRENT_SIZE, dispatch]);
 
   return (
     <div className="App">
-        {!MAKE_GAME.makeGameField && <button className="newGameBtn" onClick={() => dispatch(gameFieldStatus(true))}>New Game</button>}
+        {
+          !MAKE_GAME.makeGameField
+          && <button className="newGameBtn" onClick={() => dispatch(gameFieldStatus(true))}>New Game</button>
+        }
 
         <div className="container">
 
           {MAKE_GAME.makeGameField &&
-            <Options createNewGame={(currentId, currentSize) => {
-              dispatch(selectedBoard({
-                id: currentId,
-                size: currentSize,
-                matrix: createCurrentMatrix(currentSize),
-              }));
-            }} />
+            <Options createNewGame={MAKE_NEW_BOARD} />
           }
 
           <div className="boardField">

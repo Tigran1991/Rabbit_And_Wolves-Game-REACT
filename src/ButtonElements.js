@@ -1,5 +1,4 @@
-import React from 'react';
-import { memo } from 'react';
+import { memo, React } from 'react';
 
 import './App.css';
 

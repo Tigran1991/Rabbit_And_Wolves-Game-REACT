@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { memo, React, useCallback }  from 'react';
 import { useDispatch } from 'react-redux';
 
 import './App.css';
@@ -7,7 +7,7 @@ import ButtonElements from './ButtonElements';
 import { moveCharacters } from './RabbitWolfGameClass';
 import { updateBoard } from './redux/features/boardsReducerSlice';
 
-const GameBoard = (props) => {
+const GameBoard = memo(({ boardData }) => {
 
     const dispatch = useDispatch();
 
@@ -15,19 +15,20 @@ const GameBoard = (props) => {
     const WIDTH_INDEX = 44;
     const HEIGHT_INDEX = 83;
 
-    const ID = props.boardData.id;
-    const SIZE = props.boardData.size;
-    const MATRIX = props.boardData.matrix;
-    const WINNER = props.boardData.winner;
+    const ID = boardData.id;
+    const SIZE = boardData.size;
+    const MATRIX = boardData.matrix;
+    const WINNER = boardData.winner;
 
-    const UPDATE_BOARD = useCallback((sideMove) => {
+    const UPDATE_BOARD = useCallback(sideMove => {
         const [updatedMatrix, winnerCharacter] = moveCharacters(sideMove, MATRIX, SIZE);
         dispatch(updateBoard({
             id: ID,
-            matrix: [...updatedMatrix],
+            size: SIZE,
+            matrix: updatedMatrix,
             winner: winnerCharacter, 
         }))
-    }, [ID, MATRIX, SIZE, dispatch]);
+    }, [ID, SIZE, MATRIX, dispatch]);
 
     const boardStyle = {
         width: CELL_SIZE * SIZE + WIDTH_INDEX,
@@ -51,6 +52,6 @@ const GameBoard = (props) => {
             }
         </div>           
     )
-}
+})
 
 export default GameBoard;

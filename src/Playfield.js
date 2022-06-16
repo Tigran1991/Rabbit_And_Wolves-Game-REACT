@@ -1,16 +1,16 @@
-import {React, memo} from 'react';
+import React from 'react';
 
 import './App.css';
 import CharacterCell from './CharacterCell';
 import { FREE_CELL } from './RabbitWolfGameClass';
 
-const Playfield = memo((props) => {
+const Playfield = ({ matrix }) => {
 
     return (
       <div className='playfield'>
 
         {
-          props.matrix.map((row, X) => 
+          matrix.map((row, X) => 
             row.map((rowItem, Y) =>
               rowItem !== 0 ?
               <CharacterCell item={rowItem} key={X + "" + Y}/> :
@@ -21,6 +21,6 @@ const Playfield = memo((props) => {
         
       </div>
     )
-})
+}
 
 export default Playfield;

@@ -5,15 +5,16 @@ export const boardsReducer = (state = [], action) => {
     return [...state, boardReducer(undefined, action)];
   }
   if (action.type === "make-movement") {
-    state.filter((item) => {
-      if (item.id === action.payload.id) {
-        item.matrix = action.payload.matrix;
-        item.winner = action.payload.winner;
+    return state.map(board => { 
+      if (board.id === action.payload.id) {
+        board.matrix = action.payload.matrix;
+        board.winner = action.payload.winner;
+        return {...board, matrix: action.payload.matrix, winner: action.payload.winner};
       }
+      return board;
     });
-    return [...state];
   }
-
+  
   return state;
 }
 
@@ -26,6 +27,7 @@ export const updateBoard = (updatedValues) => {
     type: "make-movement",
     payload: {
       id: updatedValues.id,
+      size: updatedValues.size,
       matrix: updatedValues.matrix,
       winner: updatedValues.winner,
     },

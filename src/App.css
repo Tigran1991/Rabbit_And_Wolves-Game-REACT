@@ -78,7 +78,7 @@ select:hover{
     background-color: rgb(5, 23, 92);
 }
 
-.newBoardBtn{
+input{
     width: 160px;
     height: 40px;
     border: 2px solid rgb(224, 167, 9);
